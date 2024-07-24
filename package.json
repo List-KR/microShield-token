@@ -1,0 +1,17 @@
+{
+  "name": "microshield-token",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "commit": "tsx sources/index.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "simple-git": "^3.25.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12"
+  }
+}

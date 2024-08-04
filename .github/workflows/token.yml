@@ -1,6 +1,7 @@
-name: Create tags and release
+name: Capture remote tokens
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
 

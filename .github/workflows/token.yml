@@ -20,6 +20,7 @@ jobs:
       - name: Setup proxy
         run: |
           docker run -d -p 127.0.0.1:8080:8080 yarmak/hola-proxy -proxy-type direct -country ${{ matrix.location }}
+          sleep 10
       - name: Set up NodeJS LTS
         uses: actions/setup-node@v4
         with:

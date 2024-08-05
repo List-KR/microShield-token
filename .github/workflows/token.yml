@@ -3,7 +3,7 @@ name: Capture remote tokens
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0/30 * * * *'
 
 jobs:
   release:
@@ -11,14 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    strategy:
+      matrix:
+        location: [ar, de, fr, gb, hk, jp, kr, us, au]
+        referer: [dogdrip.net]
+        domain: [css-load.com]
     steps:
+      - name: Setup proxy
+        run: |
+          docker run -d -p 127.0.0.1:8080:8080 yarmak/hola-proxy -proxy-type direct -country ${{ matrix.location }}
       - name: Set up NodeJS LTS
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Download the script content
+        run: |
+          curl -x http://127.0.0.1:8080 --referer "https://${{ matrix.referer }}" https://${{ matrix.domain }}/loader.min.js > /tmp/target.js
       - name: Capture remote tokens
-        uses: List-KR/microShield-token-gen@1.0.0
+        uses: List-KR/microShield-token-gen@1.0.1
         with:
-          config: 'config.json'
+          target: '/tmp/target.js'

@@ -50,3 +50,4 @@ jobs:
           fetch-depth: 0
       - name: Create a Release
         uses: List-KR/semver-release@2.2.0
+    needs: [capture]

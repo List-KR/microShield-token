@@ -31,6 +31,6 @@ jobs:
         run: |
           curl -x http://127.0.0.1:8080 --referer "https://${{ matrix.referer }}" https://${{ matrix.domain }}/loader.min.js > /tmp/target.js
       - name: Capture remote tokens
-        uses: List-KR/microShield-token-gen@1.0.1
+        uses: List-KR/microShield-token-gen@1.0.2
         with:
           target: '/tmp/target.js'

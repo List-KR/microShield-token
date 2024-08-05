@@ -44,6 +44,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
+      - name: Sleep 10 seconds
+        run: sleep 10
       - name: Checkout
         uses: actions/checkout@v4
         with:

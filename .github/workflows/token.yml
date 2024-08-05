@@ -6,7 +6,7 @@ on:
     - cron: '0/30 * * * *'
 
 jobs:
-  release:
+  capture:
     name: Capture remote tokens
     runs-on: ubuntu-latest
     permissions:
@@ -34,3 +34,19 @@ jobs:
         uses: List-KR/microShield-token-gen@1.0.2
         with:
           target: '/tmp/target.js'
+  release:
+    name: Create a Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Set up NodeJS LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create a Release
+        uses: List-KR/semver-release@2.2.0

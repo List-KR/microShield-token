@@ -20,8 +20,8 @@ jobs:
     steps:
       - name: Setup proxy
         run: |
-          wget https://github.com/Snawoot/hola-proxy/releases/download/v1.13.3/hola-proxy.linux-amd64 -o /hola-proxy
-          chmod +x /hola-proxy
+          sudo wget https://github.com/Snawoot/hola-proxy/releases/download/v1.13.3/hola-proxy.linux-amd64 -o /hola-proxy
+          sudo chmod +x /hola-proxy
           cd /
           sudo ./hola-proxy -proxy-type direct -country ${{ matrix.location }}
           sleep 10

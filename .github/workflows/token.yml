@@ -20,9 +20,10 @@ jobs:
     steps:
       - name: Setup proxy
         run: |
-          wget https://github.com/Snawoot/hola-proxy/releases/download/v1.13.3/hola-proxy.linux-amd64 -o /usr/local/bin/hola-proxy
-          chmod +x /usr/local/bin/hola-proxy
-          sudo ./usr/local/bin/hola-proxy -proxy-type direct -country ${{ matrix.location }}
+          wget https://github.com/Snawoot/hola-proxy/releases/download/v1.13.3/hola-proxy.linux-amd64 -o /hola-proxy
+          chmod +x /hola-proxy
+          cd /
+          sudo ./hola-proxy -proxy-type direct -country ${{ matrix.location }}
           sleep 10
       - name: Set up NodeJS LTS
         uses: actions/setup-node@v4

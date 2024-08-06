@@ -16,6 +16,7 @@ jobs:
         location: [ar, de, fr, gb, hk, jp, kr, us, au, ro, se, sg, uk]
         referer: [dogdrip.net]
         domain: [css-load.com]
+        useragent: ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36", "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"]
     steps:
       - name: Setup proxy
         run: |
@@ -29,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Download the script content
         run: |
-          curl -x http://127.0.0.1:8080 --referer "https://${{ matrix.referer }}" https://${{ matrix.domain }}/loader.min.js > /tmp/target.js
+          curl -x http://127.0.0.1:8080 -A "${{ matrix.useragent }}" --referer "https://${{ matrix.referer }}" https://${{ matrix.domain }}/loader.min.js > /tmp/target.js
       - name: Capture remote tokens
         uses: List-KR/microShield-token-gen@1.0.2
         with:

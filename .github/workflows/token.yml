@@ -26,7 +26,7 @@ jobs:
         run: |
           sudo snap install hola-proxy
           (exec hola-proxy -proxy-type direct -country ${{ matrix.location }} &> /dev/null &)
-          sleep 10
+          sleep 15
       - name: Set up NodeJS LTS
         uses: actions/setup-node@v4
         with:
